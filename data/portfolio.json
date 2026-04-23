@@ -1,0 +1,70 @@
+{
+  "work": [
+    {
+      "id": 1,
+      "title": "Sample Thumbnail",
+      "type": "thumbnail",
+      "tag": [
+        "Design",
+        "desing"
+      ],
+      "thumbnail": "https://picsum.photos/seed/thumb/800/500",
+      "featured": true,
+      "color": "#0d0f1a"
+    },
+    {
+      "id": 2,
+      "title": "Sample Video",
+      "type": "video",
+      "tag": [
+        "Vlog"
+      ],
+      "thumbnail": "https://picsum.photos/seed/video/800/450",
+      "link": "https://youtube.com",
+      "views": "1.2K",
+      "duration": "10:05",
+      "client": "KIRA",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Sample Shor",
+      "type": "short",
+      "tag": [
+        "Gaming"
+      ],
+      "thumbnail": "https://picsum.photos/seed/short/450/800",
+      "featured": true,
+      "color": "#0d0f1a",
+      "link": "https://youtube.com/shorts",
+      "views": "50K"
+    }
+  ],
+  "services": [],
+  "messages": [],
+  "available": true,
+  "stats": {
+    "projects": 50,
+    "clients": 30,
+    "years": 3
+  },
+  "tagline": "Professional Video Editor & Content Creator",
+  "bio1": "I am Kira, a passionate video editor with over 3 years of experience in creating high-impact content.",
+  "bio2": "Specializing in Thumbnails, Videos, and Shorts for top creators.",
+  "skills": [
+    "Video Editing",
+    "Thumbnails",
+    "Color Grading",
+    "Sound Design"
+  ],
+  "about": {
+    "bio1": "I am Kira, a passionate video editor with over 3 years of experience in creating high-impact content.",
+    "bio2": "Specializing in Thumbnails, Videos, and Shorts for top creators.",
+    "skills": [
+      "Video Editing",
+      "Thumbnails",
+      "Color Grading",
+      "Sound Design"
+    ]
+  }
+}

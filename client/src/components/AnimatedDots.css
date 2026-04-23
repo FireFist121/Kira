@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════
+   Static Diagonal Dots Background
+   Gradient pattern of dots going diagonally
+   from bottom-right to top-left
+   ═══════════════════════════════════════════════ */
+
+.static-dots-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Layer 1: Small dots in a diagonal grid pattern */
+.static-dots-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px, 80px 80px;
+  background-position: 0 0, 20px 20px;
+  /* Diagonal tilt using transform */
+  transform: rotate(-25deg) scale(1.5);
+  transform-origin: center center;
+  /* Fade effect: brighter bottom-right, fading top-left */
+  mask-image: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.02) 15%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(0, 0, 0, 0.4) 65%,
+    rgba(0, 0, 0, 0.6) 85%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.02) 15%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(0, 0, 0, 0.4) 65%,
+    rgba(0, 0, 0, 0.6) 85%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* Layer 2: Red accent dots — sparse, brighter */
+.static-dots-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(229, 23, 63, 0.25) 1.5px, transparent 1.5px);
+  background-size: 120px 120px;
+  background-position: 30px 30px;
+  transform: rotate(-25deg) scale(1.5);
+  transform-origin: center center;
+  mask-image: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
