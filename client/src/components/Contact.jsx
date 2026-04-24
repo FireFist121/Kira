@@ -3,7 +3,7 @@ import { FaInstagram, FaDiscord } from 'react-icons/fa'
 import './Contact.css'
 
 /** Add your public email here when ready; leave empty to show a placeholder. */
-const CONTACT_EMAIL = ''
+const CONTACT_EMAIL = 'kir4discord@gmail.com'
 
 /** Optional: server invite (https://discord.gg/…). Leave empty to show username only (no link). */
 const DISCORD_INVITE_URL = ''

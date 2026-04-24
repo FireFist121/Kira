@@ -48,10 +48,7 @@ export default function Hero({ data }) {
 
         <div className="hero-bottom">
           <div className="hero-left">
-            <p className="hero-desc">
-              <strong>{tagline || 'Thumbnail Designer × Video Editor.'}</strong>{' '}
-              Engineered for click-through. Built for creators who can't afford to be ignored.
-            </p>
+
             <div className="hero-cta">
               <a
                 href="#thumbnails"

@@ -32,7 +32,7 @@ export default function Footer() {
               <FaInstagram size={14} />
               Instagram
             </a>
-            <a href="mailto:shehzaadeswork@gmail.com" className="footer-v2-link">
+            <a href="mailto:kir4discord@gmail.com" className="footer-v2-link">
               <FiMail size={14} />
               Email
             </a>
