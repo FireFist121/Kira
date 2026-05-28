@@ -103,14 +103,15 @@ export default function AdminOverview({ mode = 'dashboard', onNavigate }) {
       if (res.data.data) {
         setContent({
           tagline: res.data.data.tagline || '',
-          bio1: res.data.data.bio1 || '',
-          bio2: res.data.data.bio2 || '',
+          bio1: res.data.data.bio1 || "I'm KIR4 — a thumbnail designer & video editor who turns content into clicks. I design visuals that stop the scroll and craft edits that keep audiences hooked from first frame to last.",
+          bio2: res.data.data.bio2 || "With 3+ years in the game, I've worked with creators across YouTube, Instagram, and beyond — delivering high-impact thumbnails, cinematic edits, and motion graphics that elevate every channel I touch.",
           skills: (res.data.data.skills || []).join(', '),
           marqueeText: res.data.data.marqueeText || ''
         })
       }
     } catch (e) {}
   }
+
 
   const handleStatsSave = async () => {
     try {
