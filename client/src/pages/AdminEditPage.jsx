@@ -74,6 +74,11 @@ export default function AdminEditPage() {
 
   const handleSave = async () => {
     if (!form?.title?.trim()) return alert('Title required')
+
+    // Channel link is mandatory for thumbnails
+    if (isThumbnail && !form.channelLink?.trim()) {
+      return alert('Channel Link is required for thumbnails. Please enter the channel URL before saving.')
+    }
     
     // Validation for slider
     if (form._typeMode === 'slider') {
@@ -434,17 +439,22 @@ export default function AdminEditPage() {
 
           {/* Channel Info — all types */}
           <div className="admin-form-group">
-            <label className="admin-label">Channel Link</label>
+            <label className="admin-label">
+              Channel Link {isThumbnail && <span style={{ color: '#e5173f' }}>*</span>}
+            </label>
             <div className="admin-input-row" style={{ display: 'flex', gap: '8px' }}>
               <input 
                 className="admin-input" 
-                style={{ flex: 1 }}
+                style={{ flex: 1, borderColor: isThumbnail && !form.channelLink?.trim() ? '#e5173f' : '' }}
                 placeholder="https://youtube.com/@channel or channel URL" 
                 value={form.channelLink || ''} 
                 onChange={e => setForm({...form, channelLink: e.target.value})} 
               />
               <button type="button" className="dash-btn-fetch" onClick={handleChannelFetch}>✨ Fetch</button>
             </div>
+            {isThumbnail && !form.channelLink?.trim() && (
+              <p style={{ color: '#e5173f', fontSize: '11px', marginTop: '6px', fontWeight: 600 }}>Required — thumbnail will not be saved without a channel link</p>
+            )}
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>

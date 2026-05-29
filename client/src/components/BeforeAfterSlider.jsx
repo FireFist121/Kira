@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useCallback } from 'react'
 
 /**
  * BeforeAfterSlider component for comparing two images.
+ * Uses pointer capture so only the active slider responds to drag events —
+ * other slider instances on the page will NOT move when this one is dragged.
  * Props:
  *   beforeImage (string) — URL
  *   afterImage (string) — URL
@@ -15,9 +17,9 @@ export default function BeforeAfterSlider({
   afterLabel = 'After'
 }) {
   const [pos, setPos] = useState(100)
-  const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef(null)
   const requestRef = useRef()
+  const isDraggingRef = useRef(false)
 
   const updatePos = useCallback((clientX) => {
     if (!containerRef.current) return
@@ -31,42 +33,27 @@ export default function BeforeAfterSlider({
     })
   }, [])
 
-  const handlePointerDown = (e) => {
-    setIsDragging(true)
+  const handlePointerDown = useCallback((e) => {
+    // Capture pointer so all future pointer events go to this element only
+    // This prevents other slider instances from receiving the events
+    e.currentTarget.setPointerCapture(e.pointerId)
+    isDraggingRef.current = true
     updatePos(e.clientX)
-  }
+  }, [updatePos])
 
   const handlePointerMove = useCallback((e) => {
-    if (!isDragging) return
+    if (!isDraggingRef.current) return
     updatePos(e.clientX)
-  }, [isDragging, updatePos])
+  }, [updatePos])
 
-  const handlePointerUp = useCallback(() => {
-    setIsDragging(false)
+  const handlePointerUp = useCallback((e) => {
+    isDraggingRef.current = false
+    // Release pointer capture
+    if (e.currentTarget.hasPointerCapture?.(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId)
+    }
+    if (requestRef.current) cancelAnimationFrame(requestRef.current)
   }, [])
-
-  const handleTouchMove = useCallback((e) => {
-    if (!isDragging) return
-    updatePos(e.touches[0].clientX)
-  }, [isDragging, updatePos])
-
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener('pointermove', handlePointerMove)
-      window.addEventListener('pointerup', handlePointerUp)
-      window.addEventListener('touchmove', handleTouchMove)
-    } else {
-      window.removeEventListener('pointermove', handlePointerMove)
-      window.removeEventListener('pointerup', handlePointerUp)
-      window.removeEventListener('touchmove', handleTouchMove)
-    }
-    return () => {
-      window.removeEventListener('pointermove', handlePointerMove)
-      window.removeEventListener('pointerup', handlePointerUp)
-      window.removeEventListener('touchmove', handleTouchMove)
-      if (requestRef.current) cancelAnimationFrame(requestRef.current)
-    }
-  }, [isDragging, handlePointerMove, handlePointerUp, handleTouchMove])
 
   return (
     <div 
@@ -84,6 +71,9 @@ export default function BeforeAfterSlider({
         boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
       }}
       onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
     >
       {/* Before Image (Background) */}
       <img 

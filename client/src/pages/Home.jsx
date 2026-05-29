@@ -252,82 +252,86 @@ export default function Home({ data }) {
       </section>
 
       {/* ═══ SECTION 2: VIDEOS ═══ */}
-      <section id="videos" className="content-section">
-        <div className="content-section-inner">
-          <SectionTitle label="Videos" />
-          <SectionFilterBar
-            searchQuery={videoSearch} onSearchChange={setVideoSearch}
-            sort={videoSort} onSortChange={setVideoSort}
-            placeholder="Search videos..."
-          />
-          {filteredVideos.length === 0 ? (
-            <div className="empty-state"><div className="empty-state-icon">🎬</div><p>No videos match your filters.</p></div>
-          ) : (
-            <>
-              <div className="content-grid">
-                {videosDisplay.map(video => (
-                  <ProjectCard
-                    key={video.id || video._id}
-                    title={video.title}
-                    image={videoThumbUrl(video)}
-                    tags={itemTagsList(video)}
-                    views={video.views || ''}
-                    client={video.client || ''}
-                    channelLogo={video.channelLogo || ''}
-                    channelLink={video.channelLink || ''}
-                    link={video.link || ''}
-                    type="video"
-                    aspectRatio={video.aspectRatio}
-                    isAdmin={isAdmin}
-                    onEdit={() => handleEdit(video)}
-                    onDelete={() => handleDeleteRequest(video)}
-                  />
-                ))}
-              </div>
-              <ToggleButton expanded={videoExpanded} onToggle={() => setVideoExpanded(!videoExpanded)} totalCount={filteredVideos.length} />
-            </>
-          )}
-        </div>
-      </section>
+      {allVideos.length > 0 && (
+        <section id="videos" className="content-section">
+          <div className="content-section-inner">
+            <SectionTitle label="Videos" />
+            <SectionFilterBar
+              searchQuery={videoSearch} onSearchChange={setVideoSearch}
+              sort={videoSort} onSortChange={setVideoSort}
+              placeholder="Search videos..."
+            />
+            {filteredVideos.length === 0 ? (
+              <div className="empty-state"><div className="empty-state-icon">🎬</div><p>No videos match your filters.</p></div>
+            ) : (
+              <>
+                <div className="content-grid">
+                  {videosDisplay.map(video => (
+                    <ProjectCard
+                      key={video.id || video._id}
+                      title={video.title}
+                      image={videoThumbUrl(video)}
+                      tags={itemTagsList(video)}
+                      views={video.views || ''}
+                      client={video.client || ''}
+                      channelLogo={video.channelLogo || ''}
+                      channelLink={video.channelLink || ''}
+                      link={video.link || ''}
+                      type="video"
+                      aspectRatio={video.aspectRatio}
+                      isAdmin={isAdmin}
+                      onEdit={() => handleEdit(video)}
+                      onDelete={() => handleDeleteRequest(video)}
+                    />
+                  ))}
+                </div>
+                <ToggleButton expanded={videoExpanded} onToggle={() => setVideoExpanded(!videoExpanded)} totalCount={filteredVideos.length} />
+              </>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ═══ SECTION 3: SHORTS ═══ */}
-      <section id="shorts" className="content-section">
-        <div className="content-section-inner">
-          <SectionTitle label="Shorts" />
-          <SectionFilterBar
-            searchQuery={shortSearch} onSearchChange={setShortSearch}
-            sort={shortSort} onSortChange={setShortSort}
-            placeholder="Search shorts..."
-          />
-          {filteredShorts.length === 0 ? (
-            <div className="empty-state"><div className="empty-state-icon">📱</div><p>No shorts match your filters.</p></div>
-          ) : (
-            <>
-              <div className="content-grid">
-                {shortsDisplay.map(short => (
-                  <ProjectCard
-                    key={short.id || short._id}
-                    title={short.title}
-                    image={videoThumbUrl(short)}
-                    tags={itemTagsList(short)}
-                    views={short.views || ''}
-                    client={short.client || ''}
-                    channelLogo={short.channelLogo || ''}
-                    channelLink={short.channelLink || ''}
-                    link={short.link || ''}
-                    type="short"
-                    aspectRatio={short.aspectRatio || '9:16'}
-                    isAdmin={isAdmin}
-                    onEdit={() => handleEdit(short)}
-                    onDelete={() => handleDeleteRequest(short)}
-                  />
-                ))}
-              </div>
-              <ToggleButton expanded={shortExpanded} onToggle={() => setShortExpanded(!shortExpanded)} totalCount={filteredShorts.length} />
-            </>
-          )}
-        </div>
-      </section>
+      {allShorts.length > 0 && (
+        <section id="shorts" className="content-section">
+          <div className="content-section-inner">
+            <SectionTitle label="Shorts" />
+            <SectionFilterBar
+              searchQuery={shortSearch} onSearchChange={setShortSearch}
+              sort={shortSort} onSortChange={setShortSort}
+              placeholder="Search shorts..."
+            />
+            {filteredShorts.length === 0 ? (
+              <div className="empty-state"><div className="empty-state-icon">📱</div><p>No shorts match your filters.</p></div>
+            ) : (
+              <>
+                <div className="content-grid">
+                  {shortsDisplay.map(short => (
+                    <ProjectCard
+                      key={short.id || short._id}
+                      title={short.title}
+                      image={videoThumbUrl(short)}
+                      tags={itemTagsList(short)}
+                      views={short.views || ''}
+                      client={short.client || ''}
+                      channelLogo={short.channelLogo || ''}
+                      channelLink={short.channelLink || ''}
+                      link={short.link || ''}
+                      type="short"
+                      aspectRatio={short.aspectRatio || '9:16'}
+                      isAdmin={isAdmin}
+                      onEdit={() => handleEdit(short)}
+                      onDelete={() => handleDeleteRequest(short)}
+                    />
+                  ))}
+                </div>
+                <ToggleButton expanded={shortExpanded} onToggle={() => setShortExpanded(!shortExpanded)} totalCount={filteredShorts.length} />
+              </>
+            )}
+          </div>
+        </section>
+      )}
 
       <About data={data || {}} />
       <Contact />
