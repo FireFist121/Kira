@@ -1,0 +1,99 @@
+/** Normalize tag field from API item */
+export function itemTagsList(item) {
+  const normalize = (t) => {
+    let s = String(t).trim().toLowerCase();
+    if (!s) return null;
+    
+    // Consolidation Map
+    if (s === 'vlogs') return 'vlog';
+    if (s === 'irl video' || s === 'irl videos') return 'irl';
+    if (s.includes('gaming')) return 'gaming';
+    
+    return s;
+  }
+
+  let raw = [];
+  if (Array.isArray(item.tag)) raw = item.tag;
+  else if (typeof item.tag === 'string') raw = item.tag.split(',');
+  
+  // Use a Set to avoid duplicates after normalization
+  const unique = new Set(raw.map(normalize).filter(Boolean));
+  return Array.from(unique);
+}
+
+/** Rough numeric views for sorting (handles "1.2M", "890K", plain numbers) */
+export function parseViews(v) {
+  if (v == null || v === '') return 0
+  if (typeof v === 'number') return v
+  const s = String(v).trim().toUpperCase()
+  const m = s.match(/^([\d.]+)\s*([KMB])?$/i)
+  if (!m) return parseInt(s.replace(/,/g, ''), 10) || 0
+  let n = parseFloat(m[1])
+  const u = m[2]
+  if (u === 'K') n *= 1e3
+  else if (u === 'M') n *= 1e6
+  else if (u === 'B') n *= 1e9
+  return n
+}
+
+export function matchesSearch(item, q) {
+  if (!q?.trim()) return true
+  const t = q.trim().toLowerCase()
+  const title = (item.title || '').toLowerCase()
+  const client = (item.client || '').toLowerCase()
+  const blob = itemTagsList(item).join(' ').toLowerCase()
+  return title.includes(t) || client.includes(t) || blob.includes(t)
+}
+
+export function sortWorkItems(items, sort) {
+  const copy = [...items]
+  if (sort === 'featured') {
+    // Preserve the backend's custom sort (pinned -> order -> createdAt)
+    return copy
+  } else if (sort === 'latest') {
+    copy.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+
+      const idA = a.id || a._id || ''
+      const idB = b.id || b._id || ''
+      return idB.localeCompare(idA) // naive string id sort for latest
+    })
+  } else if (sort === 'views') {
+    copy.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+
+      return parseViews(b.views) - parseViews(a.views)
+    })
+  }
+  return copy
+}
+
+export function extractVideoId(url) {
+  if (!url) return null
+  const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+  const match = url.match(regExp)
+  return (match && match[2].length === 11) ? match[2] : null
+}
+
+export function thumbUrl(item) {
+  // If a manual thumbnail is provided, use it
+  if (item.thumbnail || item.imageUrl) return item.thumbnail || item.imageUrl
+  
+  // Otherwise, if it's a YouTube link, fetch the highest quality (maxresdefault)
+  const vid = extractVideoId(item.link)
+  if (vid) {
+    // Using i.ytimg.com/vi/[id]/maxresdefault.jpg for highest quality
+    return `https://i.ytimg.com/vi/${vid}/maxresdefault.jpg`
+  }
+  
+  // Fallback for comparison sliders
+  if (item.afterImage || item.beforeImage) return item.afterImage || item.beforeImage
+
+  return ''
+}
+
+export function videoThumbUrl(item) {
+  return thumbUrl(item)
+}

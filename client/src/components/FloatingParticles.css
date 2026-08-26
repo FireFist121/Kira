@@ -1,0 +1,37 @@
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0; /* Keep it behind everything else */
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px; /* Start below the screen */
+  background: radial-gradient(circle, var(--accent) 0%, transparent 80%);
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+  box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+  filter: blur(1px);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1; /* Fade in quickly */
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.5);
+    opacity: 0; /* Fade out at the top */
+  }
+}

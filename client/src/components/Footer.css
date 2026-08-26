@@ -1,0 +1,288 @@
+/* ═══════════════════════════════════════════
+   Footer V2 — Premium layout
+   Brand + Connect/Location columns + Bottom bar
+   ═══════════════════════════════════════════ */
+
+.footer-v2 {
+  position: relative;
+  padding: 0;
+  margin-top: 40px;
+}
+
+/* Top divider — subtle gradient line */
+.footer-v2-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+/* ── Main Content ── */
+.footer-v2-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 5% 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* Brand */
+.footer-v2-brand {
+  flex-shrink: 0;
+}
+
+.footer-v2-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 3px;
+  color: #f0f0ee;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.footer-v2-logo .accent {
+  color: #e5173f;
+}
+
+.footer-v2-dot {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-v2-tagline {
+  font-family: 'Space Mono', 'Inter', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Columns */
+.footer-v2-columns {
+  display: flex;
+  gap: 80px;
+}
+
+.footer-v2-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-v2-col-title {
+  font-family: 'Space Mono', 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 4px;
+}
+
+.footer-v2-link, .footer-v2-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-v2-link:hover, .footer-v2-link-btn:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.footer-v2-link svg, .footer-v2-link-btn svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+
+.footer-v2-link:hover svg, .footer-v2-link-btn:hover svg {
+  opacity: 1;
+}
+
+/* ── Email Copy Modal ── */
+.email-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+.email-modal-card {
+  position: relative;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 48px 32px 32px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.email-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.email-modal-close:hover {
+  background: var(--accent);
+  transform: rotate(90deg);
+}
+
+.email-modal-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(229, 23, 63, 0.1);
+  border: 1px solid rgba(229, 23, 63, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 28px;
+  color: var(--accent);
+}
+
+.email-modal-icon.discord {
+  background: rgba(88, 101, 242, 0.1);
+  border-color: rgba(88, 101, 242, 0.2);
+  color: #5865f2;
+}
+
+.email-modal-title {
+  font-family: var(--font-head);
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.email-modal-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 32px;
+}
+
+.email-copy-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 4px 4px 4px 16px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.email-copy-box:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.email-address {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #fff;
+  user-select: all;
+}
+
+.email-copy-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.email-copy-btn.copied {
+  background: #22c55e;
+  color: #fff;
+}
+
+.copy-success-msg {
+  display: block;
+  font-size: 12px;
+  color: #22c55e;
+  margin-top: 12px;
+  font-weight: 500;
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .footer-v2-main {
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 5% 36px;
+  }
+
+  .footer-v2-columns {
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-v2-columns {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-v2-logo {
+    font-size: 28px;
+  }
+
+  .email-modal-card {
+    padding: 40px 20px 24px;
+  }
+}

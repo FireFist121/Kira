@@ -1,0 +1,55 @@
+{
+  "work": [
+    {
+      "id": 1777010031248,
+      "title": "dsd",
+      "type": "slider",
+      "tag": [],
+      "thumbnail": "",
+      "featured": true,
+      "color": "#0d0f1a",
+      "beforeImage": "https://media.discordapp.net/attachments/1214208642795053067/1495686399909957743/Lallan_vs_robert.jpg?ex=69ebc342&is=69ea71c2&hm=7082a5782774f3d0e19ffbfed16e16fdb674730def8bf82eadd885bd68082246&=&format=webp&width=838&height=471",
+      "afterImage": "https://media.discordapp.net/attachments/1214208642795053067/1496437712360702023/detectivelallan2.jpg?ex=69ebdbf9&is=69ea8a79&hm=c1ff2ceabbdb8001b5eaf3c688f4a77101af928141a0e4b4e0c8edd26cc1652d&=&format=webp&width=838&height=471"
+    },
+    {
+      "id": 1777011739006,
+      "title": "HUM BGIS JEET GAYE 😍 EPIC REACTION WITH GOLDY BHAI - Vlog",
+      "type": "video",
+      "tag": [],
+      "thumbnail": "https://i.ytimg.com/vi/oUnaqNNh7qI/hqdefault.jpg",
+      "featured": true,
+      "color": "#0d0f1a",
+      "client": "8bit PitajiPlayz",
+      "link": "https://www.youtube.com/watch?v=oUnaqNNh7qI",
+      "views": "86.3K",
+      "duration": ""
+    }
+  ],
+  "services": [],
+  "messages": [],
+  "available": true,
+  "stats": {
+    "projects": 50,
+    "clients": 30,
+    "years": 3
+  },
+  "tagline": "Professional Video Editor & Content Creator",
+  "bio1": "I am Kira, a passionate video editor with over 3 years of experience in creating high-impact content.",
+  "bio2": "Specializing in Thumbnails, Videos, and Shorts for top creators.",
+  "skills": [
+    "Video Editing",
+    "Thumbnails",
+    "Color Grading",
+    "Sound Design"
+  ],
+  "about": {
+    "bio1": "I am Kira, a passionate video editor with over 3 years of experience in creating high-impact content.",
+    "bio2": "Specializing in Thumbnails, Videos, and Shorts for top creators.",
+    "skills": [
+      "Video Editing",
+      "Thumbnails",
+      "Color Grading",
+      "Sound Design"
+    ]
+  }
+}
